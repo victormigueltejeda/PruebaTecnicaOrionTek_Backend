@@ -8,7 +8,7 @@ namespace PruebaTecnica.Controllers
 {
 
     [ApiController]
-    [Route("api/Cliente/{clienteId:int}/Direccion")]
+    [Route("api/Cliente/Direccion/{clienteId:int}")]
     public class DireccionController: ControllerBase
     {
 

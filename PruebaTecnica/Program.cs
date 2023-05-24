@@ -21,11 +21,14 @@ builder.Services.AddAutoMapper(typeof(AplicationDbContext));
 builder.Services.AddCors(options =>
 {
 
-    options.AddPolicy("Politicas", app =>
+    options.AddPolicy("AllowOrigin", app =>
     {
-        app.AllowAnyOrigin()
+        app
         .AllowAnyMethod()
-        .AllowAnyOrigin();
+        .AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .WithExposedHeaders("Content-Disposition");
     });
 
 });
@@ -46,6 +49,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseCors("Politicas");
+app.UseCors("AllowOrigin");
 
 app.Run();

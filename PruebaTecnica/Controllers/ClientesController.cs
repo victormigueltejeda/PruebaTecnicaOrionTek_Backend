@@ -44,7 +44,7 @@ namespace PruebaTecnica.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("guardarClientes")]
         public async Task<ActionResult> PostClientes([FromBody] ClienteCreacionDTOs clienteCreacionDTOs)
         {
             var existeClienteConElMismoNombre = await context.Cliente.AnyAsync(x => x.Nombre == clienteCreacionDTOs.Nombre);
@@ -64,7 +64,7 @@ namespace PruebaTecnica.Controllers
 
 
 
-        [HttpPut("{id:int}")]
+        [HttpPut("actualizarCliente/{id:int}")]
         public async Task<ActionResult> PutClientes([FromBody]ClienteDTOs clienteDto, int id)
         {
 
@@ -88,11 +88,11 @@ namespace PruebaTecnica.Controllers
 
             context.Update(cliente);
             await context.SaveChangesAsync();
-            return Ok("El Cliente se Actualizo Correctamente");
+            return Ok();
         }
 
 
-        [HttpDelete("{id:int}")]
+        [HttpDelete("eliminarCliente/{id:int}")]
         public async Task<ActionResult> DeleteCliente(int id)
         {
 
